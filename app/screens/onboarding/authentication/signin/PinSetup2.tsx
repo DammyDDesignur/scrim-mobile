@@ -11,12 +11,12 @@ import { KeycodeInput } from "react-native-keycode";
 
 const { width, height } = Dimensions.get("window");
 
-const PinSetup = ({ navigation }) => {
+const PinSetup2 = ({ navigation }) => {
   const [pin, setPin] = React.useState("");
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.text}>Set Up Pin</Text>
+        <Text style={styles.text}>Retype Pin</Text>
         <Text style={styles.subText}>
           Input a combination that you would easily remember.
         </Text>
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
-export default PinSetup;
+export default PinSetup2;

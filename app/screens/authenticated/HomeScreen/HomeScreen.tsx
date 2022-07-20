@@ -1,225 +1,150 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  Dimensions,
-  ScrollView,
-  ImageBackground,
-  Image,
-  RefreshControl,
-} from "react-native";
-
+import { View, StyleSheet, Text, Image, ImageBackground } from "react-native";
 import SafeScreen from "../../../components/reusables/SafeScreen";
 import colors from "../../../config/colors";
+import Transfer from "../../../icons/Transfer";
 
-import { LinearGradient } from "expo-linear-gradient";
-
-import { Button, Avatar } from "react-native-paper";
-
-const wait = (timeout) => {
-  return new Promise((resolve) => setTimeout(resolve, timeout));
-};
-
-import ScrimButton from "../../../components/reusables/ScrimButton";
+import VirtualKeyboard from "react-native-virtual-keyboard";
 import ViewWithPng from "../../../components/reusables/ViewWithPng";
-import Scrimmmm from "../../../components/reusables/Scrimmmm";
-import { StatusBar } from "expo-status-bar";
-
-const { width, height } = Dimensions.get("window");
+import { Button } from "react-native-paper";
+import ScrimButton from "../../../components/reusables/ScrimButton";
+import Constants from "expo-constants";
 
 const HomeScreen = () => {
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
+  const [amount, setAmount] = React.useState<string>("|");
   return (
-    <SafeScreen style={styles.container}>
-      <StatusBar style="dark" />
-      <ScrollView
-        style={styles.container}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-        <View style={styles.headContainer}>
-          <View>
-            <Text style={styles.text}>Hey Nagamoto 👽</Text>
-            <Text style={styles.subText}>
-              Who would you try to scrim at today {"🤲🏿"}
-            </Text>
-          </View>
-          <Avatar.Icon
-            size={40}
-            style={{ borderRadius: 15 }}
-            icon="white-balance-sunny"
+    <>
+      <StatusBar style="light" />
+
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../../../assets/profile/Hanger.png")}
+          resizeMode="center"
+          style={styles.balanceContainer}
+        >
+          <Text style={styles.balanceText}>Balance</Text>
+          <ViewWithPng style={styles.balance}>
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require("../../../assets/profile/icon-small.png")}
+            />
+            <Text style={styles.text}>3,180</Text>
+          </ViewWithPng>
+        </ImageBackground>
+        <View style={styles.iconContainer}>
+          <Image
+            style={{ width: 30, height: 30 }}
+            source={require("../../../assets/profile/icon-small.png")}
           />
         </View>
-        <View style={styles.cardContainer}>
-          <ImageBackground
-            resizeMode="stretch"
-            style={styles.card}
-            source={require("../../../assets/profile/Card.png")}
-          >
-            <ViewWithPng style={{ backgroundColor: colors.tertiary }}>
-              <Image
-                style={{ width: 20, height: 20 }}
-                source={require("../../../assets/profile/icon-small.png")}
-              />
-              <Text style={styles.WithPngText}>Scrim Token</Text>
-            </ViewWithPng>
-
-            <Text style={styles.balance}>3,180</Text>
-            <ViewWithPng style={{ backgroundColor: colors.tertiary }}>
-              <Text style={styles.WithPngText}> = N60,000/$100</Text>
-            </ViewWithPng>
-          </ImageBackground>
+        <Text style={styles.amount}>{amount}</Text>
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View style={styles.rateContainer}>
+            <Text style={styles.rate}>= N60,000/$100</Text>
+          </View>
         </View>
-        <Scrimmmm />
+        <View>
+          <VirtualKeyboard
+            rowStyle={{ paddingVertical: 10 }}
+            decimal={true}
+            clearOnLongPress={true}
+            color={colors.white}
+            pressMode="string"
+            onPress={(val: string) => setAmount(val)}
+          />
+        </View>
         <View style={styles.action}>
-          <Text style={[styles.text, { color: colors.black, margin: 10 }]}>
-            Quick Actions
-          </Text>
-          <ScrollView decelerationRate="fast" horizontal style={{ width }}>
-            <Card1 />
-            <Card2 />
-            <Card3 />
-          </ScrollView>
+          <Button style={styles.btn} color={colors.white} mode="outlined">
+            Deposit
+          </Button>
+          <ScrimButton mode="white" onPress={() => console.log("hi")} />
         </View>
-      </ScrollView>
-    </SafeScreen>
+      </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   action: {
-    // padding: 10,
-  },
-
-  balance: {
-    color: colors.warning,
-    fontSize: 60,
-    fontFamily: "Moderat",
-  },
-  container: {
-    backgroundColor: colors.light,
-    height: "100%",
-  },
-  headContainer: {
-    width,
-    padding: 10,
-    paddingVertical: 20,
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    padding: 20,
   },
-  text: {
-    color: colors.primary,
-    fontSize: 25,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+  btn: {
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: colors.white,
   },
-  subText: {
-    fontFamily: "Moderat",
-    fontSize: 15,
-    marginTop: 15,
+  balance: {
+    backgroundColor: colors.warning,
+    width: "45%",
+    transform: [{ rotate: "-5deg" }],
+    borderWidth: 2,
+    borderColor: colors.tertiary,
   },
-
-  WithPngText: {
-    color: colors.white,
-    marginHorizontal: 5,
-    fontSize: 15,
-    fontFamily: "Moderat",
-  },
-  cardContainer: {
-    padding: 5,
-  },
-  card: {
-    height: 250,
-    borderRadius: 30,
-    overflow: "hidden",
-    padding: 15,
+  balanceContainer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    paddingTop: 20,
+    marginBottom: 20,
+  },
+  balanceText: {
+    fontSize: 15,
+    fontFamily: "Moderat",
+    color: colors.white,
+    marginBottom: 5,
+    transform: [{ rotate: "-5deg" }],
+  },
+  container: {
+    backgroundColor: colors.primary,
+    height: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    paddingVertical: Constants.statusBarHeight,
+  },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  iconContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  amount: {
+    color: colors.white,
+    textAlign: "center",
+    fontFamily: "Moderat",
+    fontSize: 30,
+    marginVertical: 20,
+  },
+  rate: {
+    color: colors.white,
+    textAlign: "center",
+    fontFamily: "Moderat",
+    fontSize: 15,
+    marginVertical: 10,
+  },
+  rateContainer: {
+    backgroundColor: colors.tertiary,
+    borderRadius: 50,
+    paddingHorizontal: 10,
+    width: "40%",
+  },
+  text: {
+    fontSize: 20,
+    fontFamily: "Moderat",
+    fontWeight: "700",
+    color: colors.primary,
+    marginHorizontal: 10,
   },
 });
 export default HomeScreen;
-
-const Card1 = () => {
-  return (
-    <LinearGradient
-      start={[0.0, 0.0]}
-      end={[1.0, 1.0]}
-      colors={["#623CEA", "#7000FF", "#09CAEE"]}
-      style={style.container}
-    >
-      <Text style={style.text}>Tip your favorite creator today</Text>
-      <ScrimButton
-        mode="white"
-        color={colors.primary}
-        onPress={() => console.log("hi")}
-        style={{ width: "70%", alignSelf: "flex-end" }}
-      />
-    </LinearGradient>
-  );
-};
-
-const Card2 = () => {
-  return (
-    <LinearGradient
-      start={[0.0, 0.0]}
-      end={[1.0, 1.0]}
-      colors={["#FCDC4D", "#2FBF71", "#623CEA"]}
-      style={style.container}
-    >
-      <Text style={style.text}>Make a friend smile today</Text>
-      <ScrimButton
-        mode="white"
-        color={colors.primary}
-        onPress={() => console.log("hi")}
-        style={{ width: "70%", alignSelf: "flex-end" }}
-      />
-    </LinearGradient>
-  );
-};
-
-const Card3 = () => {
-  return (
-    <LinearGradient
-      start={[1.0, 0.0]}
-      end={[0.0, 1.0]}
-      colors={["#68B684", "#791EFA", "#EF2D56"]}
-      style={style.container}
-    >
-      <Text style={style.text}>Surprise your favorite sibling</Text>
-      <ScrimButton
-        mode="white"
-        color={colors.primary}
-        onPress={() => console.log("hi")}
-        style={{ width: "70%", alignSelf: "flex-end" }}
-      />
-    </LinearGradient>
-  );
-};
-
-const style = StyleSheet.create({
-  container: {
-    padding: 20,
-    height: 250,
-    width: 250,
-    marginHorizontal: 10,
-    borderRadius: 30,
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  text: {
-    color: colors.white,
-    fontFamily: "Moderat",
-    fontSize: 30,
-    width: "70%",
-  },
-});

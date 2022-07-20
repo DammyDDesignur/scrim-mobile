@@ -33,8 +33,8 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         {/* <Onboarding /> */}
-        <Authenticated />
-        {/* <AppNavigation /> */}
+        {/* <Authenticated /> */}
+        <AppNavigation />
       </NavigationContainer>
     </PaperProvider>
   );

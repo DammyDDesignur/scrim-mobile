@@ -35,19 +35,26 @@ const Authenticated = () => {
     >
       <Tab.Screen
         options={{
-          tabBarLabel: ({ focused }) =>
-            focused ? (
-              <View>
-                <Badge
-                  size={12}
-                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
-                ></Badge>
-              </View>
-            ) : (
-              <Text>Home</Text>
-            ),
+          tabBarLabel: ({ focused }) => (focused ? null : <Text>Home</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <Home color={focused ? colors.primary : colors.black} />
+            <>
+              {focused ? (
+                <View
+                  style={{
+                    borderTopWidth: 5,
+                    borderColor: colors.primary,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: colors.light,
+                    marginTop: -2,
+                  }}
+                >
+                  <Home color={colors.primary} />
+                </View>
+              ) : (
+                <Home color={colors.black} />
+              )}
+            </>
           ),
         }}
         name={routes.AUTHENTICATED_HOME}
@@ -56,18 +63,26 @@ const Authenticated = () => {
       <Tab.Screen
         options={{
           tabBarLabel: ({ focused }) =>
-            focused ? (
-              <View>
-                <Badge
-                  size={12}
-                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
-                ></Badge>
-              </View>
-            ) : (
-              <Text>Transfer</Text>
-            ),
+            focused ? null : <Text>Transfer</Text>,
           tabBarIcon: ({ color, focused }) => (
-            <Transfer color={focused ? colors.primary : colors.black} />
+            <>
+              {focused ? (
+                <View
+                  style={{
+                    borderTopWidth: 5,
+                    borderColor: colors.primary,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: colors.light,
+                    marginTop: -2,
+                  }}
+                >
+                  <Transfer color={colors.primary} />
+                </View>
+              ) : (
+                <Transfer color={colors.black} />
+              )}
+            </>
           ),
         }}
         name={routes.AUTHENTICATED_TRANSFER}
@@ -75,19 +90,26 @@ const Authenticated = () => {
       />
       <Tab.Screen
         options={{
-          tabBarLabel: ({ focused }) =>
-            focused ? (
-              <View>
-                <Badge
-                  size={12}
-                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
-                ></Badge>
-              </View>
-            ) : (
-              <Text>Account</Text>
-            ),
+          tabBarLabel: ({ focused }) => (focused ? null : <Text>Account</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <Account color={focused ? colors.primary : colors.black} />
+            <>
+              {focused ? (
+                <View
+                  style={{
+                    borderTopWidth: 5,
+                    borderColor: colors.primary,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: colors.light,
+                    marginTop: -2,
+                  }}
+                >
+                  <Account color={colors.primary} />
+                </View>
+              ) : (
+                <Account color={colors.black} />
+              )}
+            </>
           ),
         }}
         name={routes.AUTHENTICATED_ACCOUNT}
@@ -96,19 +118,26 @@ const Authenticated = () => {
 
       <Tab.Screen
         options={{
-          tabBarLabel: ({ focused }) =>
-            focused ? (
-              <View>
-                <Badge
-                  size={12}
-                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
-                ></Badge>
-              </View>
-            ) : (
-              <Text>Profile</Text>
-            ),
+          tabBarLabel: ({ focused }) => (focused ? null : <Text>Profile</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <Profile color={focused ? colors.primary : colors.black} />
+            <>
+              {focused ? (
+                <View
+                  style={{
+                    borderTopWidth: 5,
+                    borderColor: colors.primary,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: colors.light,
+                    marginTop: -2,
+                  }}
+                >
+                  <Profile color={colors.primary} />
+                </View>
+              ) : (
+                <Profile color={colors.black} />
+              )}
+            </>
           ),
         }}
         name={routes.AUTHENTICATED_PROFILE}

@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={routes.ONBOARDING}>
       <Stack.Screen
         options={{ animation: "slide_from_right", headerShown: false }}
         name={routes.ONBOARDING}
