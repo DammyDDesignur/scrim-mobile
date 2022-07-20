@@ -7,25 +7,43 @@ import {
   ScrollView,
   ImageBackground,
   Image,
+  RefreshControl,
 } from "react-native";
 
 import SafeScreen from "../../../components/reusables/SafeScreen";
 import colors from "../../../config/colors";
 
-import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { Button, Avatar } from "react-native-paper";
+
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 import ScrimButton from "../../../components/reusables/ScrimButton";
 import ViewWithPng from "../../../components/reusables/ViewWithPng";
 import Scrimmmm from "../../../components/reusables/Scrimmmm";
+import { StatusBar } from "expo-status-bar";
 
 const { width, height } = Dimensions.get("window");
 
 const HomeScreen = () => {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
     <SafeScreen style={styles.container}>
-      <ScrollView style={styles.container}>
+      <StatusBar style="dark" />
+      <ScrollView
+        style={styles.container}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <View style={styles.headContainer}>
           <View>
             <Text style={styles.text}>Hey Nagamoto 👽</Text>
@@ -149,6 +167,7 @@ const Card1 = () => {
     </LinearGradient>
   );
 };
+
 const Card2 = () => {
   return (
     <LinearGradient
@@ -167,6 +186,7 @@ const Card2 = () => {
     </LinearGradient>
   );
 };
+
 const Card3 = () => {
   return (
     <LinearGradient

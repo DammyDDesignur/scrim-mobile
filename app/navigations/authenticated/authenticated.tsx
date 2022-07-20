@@ -1,5 +1,6 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../../screens/authenticated/HomeScreen";
 import routes from "../../routes";
 import Home from "../../icons/Home";
@@ -11,42 +12,83 @@ import AccountScreen from "../../screens/authenticated/AccountScreen";
 import TransferScreen from "../../screens/authenticated/TransferScreen";
 import Transfer from "../../icons/Transfer";
 
-import TransferNavigation from "../TransferNavigation";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { Badge } from "react-native-paper";
 
-const Tab = createMaterialBottomTabNavigator();
+import TransferNavigation from "../TransferNavigation";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+
+const Tab = createBottomTabNavigator();
 
 const Authenticated = () => {
   return (
     <Tab.Navigator
-      activeColor={colors.primary}
-      inactiveColor={colors.black}
-      barStyle={{ backgroundColor: colors.light }}
+      // activeColor={colors.primary}
+      // inactiveColor={colors.black}
+      // barStyle={{ backgroundColor: colors.light }}
+      // screenOptions={{
+      //   tabBarColor: colors.light,
+      // }}
+      // tabBar={{tab}}
       screenOptions={{
-        tabBarColor: colors.light,
+        headerShown: false,
       }}
     >
       <Tab.Screen
         options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color }) => <Home color={color} />,
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <View>
+                <Badge
+                  size={12}
+                  style={{ backgroundColor: colors.primary }}
+                ></Badge>
+              </View>
+            ) : (
+              <Text>Home</Text>
+            ),
+          tabBarIcon: ({ color, focused }) => (
+            <Home color={focused ? colors.primary : colors.black} />
+          ),
         }}
         name={routes.AUTHENTICATED_HOME}
         component={HomeScreen}
       />
       <Tab.Screen
         options={{
-          title: "Transfer",
-          tabBarLabel: "Transfer",
-          tabBarIcon: ({ color }) => <Transfer color={color} />,
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <View>
+                <Badge
+                  size={12}
+                  style={{ backgroundColor: colors.primary }}
+                ></Badge>
+              </View>
+            ) : (
+              <Text>Transfer</Text>
+            ),
+          tabBarIcon: ({ color, focused }) => (
+            <Transfer color={focused ? colors.primary : colors.black} />
+          ),
         }}
         name={routes.AUTHENTICATED_TRANSFER}
         component={TransferNavigation}
       />
       <Tab.Screen
         options={{
-          tabBarLabel: "Account",
-          tabBarIcon: ({ color }) => <Account color={color} />,
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <View>
+                <Badge
+                  size={12}
+                  style={{ backgroundColor: colors.primary }}
+                ></Badge>
+              </View>
+            ) : (
+              <Text>Account</Text>
+            ),
+          tabBarIcon: ({ color, focused }) => (
+            <Account color={focused ? colors.primary : colors.black} />
+          ),
         }}
         name={routes.AUTHENTICATED_ACCOUNT}
         component={AccountScreen}
@@ -54,8 +96,20 @@ const Authenticated = () => {
 
       <Tab.Screen
         options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color }) => <Profile color={color} />,
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <View>
+                <Badge
+                  size={12}
+                  style={{ backgroundColor: colors.primary }}
+                ></Badge>
+              </View>
+            ) : (
+              <Text>Profile</Text>
+            ),
+          tabBarIcon: ({ color, focused }) => (
+            <Profile color={focused ? colors.primary : colors.black} />
+          ),
         }}
         name={routes.AUTHENTICATED_PROFILE}
         component={ProfileScreen}
@@ -66,21 +120,28 @@ const Authenticated = () => {
 
 export default Authenticated;
 
-const TabButton = ({ onPress, children, color, focused }) => {
+const TabButton = ({ onPress, icon, color, focused, label }) => {
   const styles = StyleSheet.create({
     container: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      borderWidth: 1,
-      borderTopWidth: 5,
-      width: "100%",
+      // borderWidth: 1,
+      // borderTopWidth: 5,
+      // width: "100%",
       //   backgroundColor: "white",
     },
   });
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>{children}</View>
+      <View style={styles.container}>
+        <View>{icon}</View>
+        {focused ? (
+          <Badge style={{ backgroundColor: colors.primary }} size={10}></Badge>
+        ) : (
+          <Text>{label}</Text>
+        )}
+      </View>
     </TouchableOpacity>
   );
 };
