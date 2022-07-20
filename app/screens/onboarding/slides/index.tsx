@@ -23,6 +23,7 @@ const OnboardingSlide = () => {
   const handleGetPosition = (event: any) => {
     setScreen(event.nativeEvent.contentOffset.x);
   };
+
   return (
     <View style={styles.container}>
       <ScrollView

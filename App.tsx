@@ -2,6 +2,9 @@ import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import OnboardingSlide from "./app/screens/onboarding/slides";
 import { useFonts } from "expo-font";
 
+import { NavigationContainer } from "@react-navigation/native";
+import Onboarding from "./app/navigations/onboarding";
+
 const theme = {
   ...DefaultTheme,
   roundness: 2,
@@ -26,7 +29,9 @@ export default function App() {
   }
   return (
     <PaperProvider theme={theme}>
-      <OnboardingSlide />
+      <NavigationContainer>
+        <Onboarding />
+      </NavigationContainer>
     </PaperProvider>
   );
 }

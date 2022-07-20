@@ -3,8 +3,16 @@ import { Dimensions, View, StyleSheet, Image } from "react-native";
 import { Button, Text } from "react-native-paper";
 import colors from "../../../config/colors";
 
+import { useNavigation } from "@react-navigation/native";
+import routes from "../../../routes";
+
+type RouteTypes = {
+  navigate: (value: string) => void;
+};
+
 const { width, height } = Dimensions.get("window");
 const FourthSlide = () => {
+  const { navigate } = useNavigation<RouteTypes>();
   return (
     <View style={styles.container}>
       <View style={styles.minContainer}>
@@ -19,7 +27,11 @@ const FourthSlide = () => {
           />
         </View>
         <View style={styles.btnContainer}>
-          <Button style={styles.btn} mode="outlined">
+          <Button
+            onPress={() => navigate(routes.AUTHENTICATION_SIGNUP)}
+            style={styles.btn}
+            mode="outlined"
+          >
             Create an account
           </Button>
           <Button style={styles.btn} mode="contained">
