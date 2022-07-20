@@ -33,11 +33,7 @@ const FirstSlide = ({ handleNext }: SlideType) => {
         </View>
       </View>
       <View style={styles.controls}>
-        <ScrimButton
-          color={colors.primary}
-          style={{ backgroundColor: "white" }}
-          onPress={handleNext}
-        />
+        <ScrimButton mode="white" onPress={handleNext} />
       </View>
     </ImageBackground>
   );

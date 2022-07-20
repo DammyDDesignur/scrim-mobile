@@ -4,6 +4,8 @@ import { useFonts } from "expo-font";
 
 import { NavigationContainer } from "@react-navigation/native";
 import Onboarding from "./app/navigations/onboarding";
+import Authenticated from "./app/navigations/authenticated";
+import AppNavigation from "./app/navigations/app";
 
 const theme = {
   ...DefaultTheme,
@@ -30,7 +32,9 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <Onboarding />
+        {/* <Onboarding /> */}
+        <Authenticated />
+        {/* <AppNavigation /> */}
       </NavigationContainer>
     </PaperProvider>
   );

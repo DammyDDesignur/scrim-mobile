@@ -18,31 +18,22 @@ import routes from "../../../../routes";
 
 const { width, height } = Dimensions.get("window");
 
-const SignUp = ({ navigation }) => {
+const SignIn = ({ navigation }) => {
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.text}>Create Account</Text>
-      <Text style={styles.subText}>
-        Create a scrim account withing seconds and spread love
-      </Text>
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.text}>Sign In</Text>
+        <Text style={styles.subText}>
+          Sign into your account and make some special people happy with your
+          scrims {"🚀 🚀"}
+        </Text>
+      </View>
       <View style={styles.minContainer}>
         <TextInput
           theme={{ roundness: 15 }}
           style={styles.input}
           mode="outlined"
-          label="Email"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Username"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Country"
+          label="Username / Email"
         />
         <TextInput
           theme={{ roundness: 15 }}
@@ -50,30 +41,22 @@ const SignUp = ({ navigation }) => {
           mode="outlined"
           label="Password"
         />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Retype Password"
-        />
-        <View style={styles.nextContainer}>
-          <Text style={styles.singin}>
-            Got an account?{" "}
-            <Text
-              onPress={() => navigation.navigate(routes.AUTHENTICATION_SIGNIN)}
-              style={{ color: colors.primary, fontWeight: "800" }}
-            >
-              Sign In
-            </Text>
-          </Text>
-          <ScrimButton
-            onPress={() =>
-              navigation.navigate(routes.AUTHENTICATION_EMAILVERIFICATION)
-            }
-          />
-        </View>
       </View>
-    </ScrollView>
+      <View style={styles.nextContainer}>
+        <Text style={styles.singin}>
+          No account?{" "}
+          <Text
+            onPress={() => navigation.navigate(routes.AUTHENTICATION_SIGNUP)}
+            style={{ color: colors.primary, fontWeight: "800" }}
+          >
+            Create one
+          </Text>
+        </Text>
+        <ScrimButton
+          onPress={() => navigation.navigate(routes.AUTHENTICATION_PINSETUP)}
+        />
+      </View>
+    </View>
   );
 };
 
@@ -87,6 +70,7 @@ const styles = StyleSheet.create({
     height: "80%",
     width,
     padding: 30,
+    flex: 1,
   },
   nextContainer: {
     display: "flex",
@@ -94,6 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 20,
+    padding: 30,
   },
   text: {
     color: colors.primary,
@@ -103,9 +88,11 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   subText: {
-    marginHorizontal: 35,
     fontFamily: "Moderat",
     fontSize: 18,
+
+    marginHorizontal: 35,
+    marginTop: 35,
   },
   singin: {
     fontFamily: "Moderat",
@@ -116,4 +103,4 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
-export default SignUp;
+export default SignIn;

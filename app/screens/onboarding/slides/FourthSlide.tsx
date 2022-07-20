@@ -34,7 +34,11 @@ const FourthSlide = () => {
           >
             Create an account
           </Button>
-          <Button style={styles.btn} mode="contained">
+          <Button
+            onPress={() => navigate(routes.AUTHENTICATION_SIGNIN)}
+            style={styles.btn}
+            mode="contained"
+          >
             Sign In
           </Button>
         </View>

@@ -18,60 +18,39 @@ import routes from "../../../../routes";
 
 const { width, height } = Dimensions.get("window");
 
-const SignUp = ({ navigation }) => {
+const PinSetup = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.text}>Create Account</Text>
-      <Text style={styles.subText}>
-        Create a scrim account withing seconds and spread love
-      </Text>
+      <View>
+        <Text style={styles.text}>Set Up Pin</Text>
+        <Text style={styles.subText}>
+          Input a combination that you would easily remember.
+        </Text>
+      </View>
       <View style={styles.minContainer}>
+        <Text style={styles.pin}>Pin</Text>
         <TextInput
           theme={{ roundness: 15 }}
           style={styles.input}
           mode="outlined"
-          label="Email"
+          secureTextEntry
+          maxLength={4}
         />
+        <Text style={styles.pin}>Retype Pin</Text>
         <TextInput
           theme={{ roundness: 15 }}
           style={styles.input}
           mode="outlined"
-          label="Username"
+          secureTextEntry
+          maxLength={4}
         />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Country"
+      </View>
+      <View style={styles.nextContainer}>
+        <ScrimButton
+          onPress={() =>
+            navigation.navigate(routes.AUTHENTICATION_SUCESSSCREEN)
+          }
         />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Password"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Retype Password"
-        />
-        <View style={styles.nextContainer}>
-          <Text style={styles.singin}>
-            Got an account?{" "}
-            <Text
-              onPress={() => navigation.navigate(routes.AUTHENTICATION_SIGNIN)}
-              style={{ color: colors.primary, fontWeight: "800" }}
-            >
-              Sign In
-            </Text>
-          </Text>
-          <ScrimButton
-            onPress={() =>
-              navigation.navigate(routes.AUTHENTICATION_EMAILVERIFICATION)
-            }
-          />
-        </View>
       </View>
     </ScrollView>
   );
@@ -87,13 +66,15 @@ const styles = StyleSheet.create({
     height: "80%",
     width,
     padding: 30,
+    flex: 1,
   },
   nextContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignItems: "center",
     marginVertical: 20,
+    padding: 30,
   },
   text: {
     color: colors.primary,
@@ -103,17 +84,25 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   subText: {
-    marginHorizontal: 35,
     fontFamily: "Moderat",
     fontSize: 18,
+
+    marginHorizontal: 35,
+    marginTop: 35,
   },
   singin: {
     fontFamily: "Moderat",
     fontSize: 15,
+  },
+  pin: {
+    color: colors.primary,
+    fontSize: 35,
+    fontFamily: "Moderat",
+    fontWeight: "700",
   },
   input: {
     paddingHorizontal: 10,
     marginVertical: 10,
   },
 });
-export default SignUp;
+export default PinSetup;
