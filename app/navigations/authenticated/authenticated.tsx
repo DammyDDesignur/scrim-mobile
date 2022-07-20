@@ -40,7 +40,7 @@ const Authenticated = () => {
               <View>
                 <Badge
                   size={12}
-                  style={{ backgroundColor: colors.primary }}
+                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
                 ></Badge>
               </View>
             ) : (
@@ -60,7 +60,7 @@ const Authenticated = () => {
               <View>
                 <Badge
                   size={12}
-                  style={{ backgroundColor: colors.primary }}
+                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
                 ></Badge>
               </View>
             ) : (
@@ -80,7 +80,7 @@ const Authenticated = () => {
               <View>
                 <Badge
                   size={12}
-                  style={{ backgroundColor: colors.primary }}
+                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
                 ></Badge>
               </View>
             ) : (
@@ -101,7 +101,7 @@ const Authenticated = () => {
               <View>
                 <Badge
                   size={12}
-                  style={{ backgroundColor: colors.primary }}
+                  style={{ backgroundColor: colors.primary, marginBottom: 5 }}
                 ></Badge>
               </View>
             ) : (
