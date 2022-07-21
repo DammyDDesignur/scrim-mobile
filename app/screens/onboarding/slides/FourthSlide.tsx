@@ -16,7 +16,7 @@ const FourthSlide = () => {
   return (
     <View style={styles.container}>
       <View style={styles.minContainer}>
-        <Text style={[styles.text, { color: colors.primary, marginTop: 20 }]}>
+        <Text style={[styles.text, { color: colors.primary, marginTop: 20, }]}>
           Welcome
         </Text>
         <Text style={styles.text}>Start paying with social</Text>
@@ -30,13 +30,15 @@ const FourthSlide = () => {
           <Button
             onPress={() => navigate(routes.AUTHENTICATION_SIGNUP)}
             style={styles.btn}
-            mode="outlined"
+            uppercase={false}
+           
           >
             Create an account
           </Button>
           <Button
             onPress={() => navigate(routes.AUTHENTICATION_SIGNIN)}
             style={styles.btn}
+            uppercase={false}
             mode="contained"
           >
             Sign In
@@ -62,8 +64,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     marginHorizontal: 42,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-bold",
+    fontWeight: "500",
   },
   imgView: {
     width,

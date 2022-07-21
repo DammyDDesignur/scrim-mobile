@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginVertical: 20,
     marginHorizontal: 42,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-bold",
+    fontWeight: "500",
   },
   imgView: {
     width,

@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 35,
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    ontFamily: "Moderat-regular",
+    fontWeight: "500",
   },
   subText: {
     fontFamily: "Moderat",

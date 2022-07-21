@@ -30,7 +30,7 @@ const EmailVerification = ({ navigation }) => {
       </View>
 
       <View style={styles.nextContainer}>
-        <Text style={{ color: colors.primary, fontWeight: "800" }}>
+        <Text style={{ color: colors.primary, fontWeight: "800", marginBottom:20 }}>
           Set Up Pin
         </Text>
 
@@ -63,16 +63,18 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.primary,
-    fontSize: 35,
+    fontSize: 30,
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-regular",
+    fontWeight: "500",
     textAlign: "center",
+    marginBottom : 50
+  
   },
   subText: {
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontSize: 18,
+    fontFamily: "Moderat-Light",
+    fontSize: 17,
     textAlign: "center",
   },
   singin: {
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     resizeMode: "contain",
+    marginBottom : -100
   },
 });
 export default EmailVerification;

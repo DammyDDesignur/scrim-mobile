@@ -23,7 +23,7 @@ const SignUp = ({ navigation }) => {
     <ScrollView style={styles.container}>
       <Text style={styles.text}>Create Account</Text>
       <Text style={styles.subText}>
-        Create a scrim account withing seconds and spread love
+        Create a scrim account withing seconds and spread love 👻
       </Text>
       <View style={styles.minContainer}>
         <TextInput
@@ -99,21 +99,25 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 35,
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-bold",
+    fontWeight: "500",
+    marginBottom : 20,
   },
   subText: {
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontSize: 18,
+    fontFamily: "Moderat-light",
+    fontSize: 16,
   },
   singin: {
     fontFamily: "Moderat",
-    fontSize: 15,
+    fontSize: 14,
   },
   input: {
     paddingHorizontal: 10,
     marginVertical: 10,
+  
+    
+    
   },
 });
 export default SignUp;
