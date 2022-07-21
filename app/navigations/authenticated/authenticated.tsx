@@ -9,139 +9,73 @@ import ProfileScreen from "../../screens/authenticated/ProfileScreen";
 import Profile from "../../icons/Profile";
 import Account from "../../icons/Account";
 import AccountScreen from "../../screens/authenticated/AccountScreen";
-import TransferScreen from "../../screens/authenticated/TransferScreen";
 import Transfer from "../../icons/Transfer";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Badge } from "react-native-paper";
 
 import TransferNavigation from "../TransferNavigation";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import ProfileNavigation from "../ProfileNavigation";
+import AccountNavigation from "../AccountNavigation";
 
 const Tab = createBottomTabNavigator();
 
 const Authenticated = () => {
+  const route = useRoute();
+
   return (
     <Tab.Navigator
-      // activeColor={colors.primary}
-      // inactiveColor={colors.black}
-      // barStyle={{ backgroundColor: colors.light }}
-      // screenOptions={{
-      //   tabBarColor: colors.light,
-      // }}
-      // tabBar={{tab}}
       screenOptions={{
         headerShown: false,
+        tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 0,
+        },
       }}
     >
       <Tab.Screen
-        options={{
+        options={({ navigation }) => ({
           tabBarLabel: ({ focused }) => (focused ? null : <Text>Home</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <>
-              {focused ? (
-                <View
-                  style={{
-                    borderTopWidth: 5,
-                    borderColor: colors.primary,
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: colors.light,
-                    marginTop: -2,
-                  }}
-                >
-                  <Home color={colors.primary} />
-                </View>
-              ) : (
-                <Home color={colors.black} />
-              )}
-            </>
+            <TabBarIcon focused={focused} Icon={Home} />
           ),
-        }}
+        })}
         name={routes.AUTHENTICATED_HOME}
         component={HomeScreen}
       />
       <Tab.Screen
-        options={{
+        options={({ navigation }) => ({
           tabBarLabel: ({ focused }) =>
             focused ? null : <Text>Transfer</Text>,
           tabBarIcon: ({ color, focused }) => (
-            <>
-              {focused ? (
-                <View
-                  style={{
-                    borderTopWidth: 5,
-                    borderColor: colors.primary,
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: colors.light,
-                    marginTop: -2,
-                  }}
-                >
-                  <Transfer color={colors.primary} />
-                </View>
-              ) : (
-                <Transfer color={colors.black} />
-              )}
-            </>
+            <TabBarIcon focused={focused} Icon={Transfer} />
           ),
-        }}
+        })}
         name={routes.AUTHENTICATED_TRANSFER}
         component={TransferNavigation}
       />
       <Tab.Screen
-        options={{
+        options={({ navigation }) => ({
           tabBarLabel: ({ focused }) => (focused ? null : <Text>Account</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <>
-              {focused ? (
-                <View
-                  style={{
-                    borderTopWidth: 5,
-                    borderColor: colors.primary,
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: colors.light,
-                    marginTop: -2,
-                  }}
-                >
-                  <Account color={colors.primary} />
-                </View>
-              ) : (
-                <Account color={colors.black} />
-              )}
-            </>
+            <TabBarIcon focused={focused} Icon={Account} />
           ),
-        }}
+        })}
         name={routes.AUTHENTICATED_ACCOUNT}
-        component={AccountScreen}
+        component={AccountNavigation}
       />
 
       <Tab.Screen
-        options={{
+        options={({ navigation }) => ({
           tabBarLabel: ({ focused }) => (focused ? null : <Text>Profile</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <>
-              {focused ? (
-                <View
-                  style={{
-                    borderTopWidth: 5,
-                    borderColor: colors.primary,
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: colors.light,
-                    marginTop: -2,
-                  }}
-                >
-                  <Profile color={colors.primary} />
-                </View>
-              ) : (
-                <Profile color={colors.black} />
-              )}
-            </>
+            <TabBarIcon focused={focused} Icon={Profile} />
           ),
-        }}
+        })}
         name={routes.AUTHENTICATED_PROFILE}
-        component={ProfileScreen}
+        component={ProfileNavigation}
       />
     </Tab.Navigator>
   );
@@ -149,28 +83,24 @@ const Authenticated = () => {
 
 export default Authenticated;
 
-const TabButton = ({ onPress, icon, color, focused, label }) => {
+const TabBarIcon = ({ Icon, focused }) => {
   const styles = StyleSheet.create({
     container: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      // borderWidth: 1,
-      // borderTopWidth: 5,
-      // width: "100%",
-      //   backgroundColor: "white",
+      borderTopWidth: 5,
+      borderColor: focused ? colors.primary : "transparent",
+      backgroundColor: focused ? colors.light : "transparent",
+      height: "100%",
+      marginTop: -2,
+      width: "100%",
     },
+    iconStyle: {},
   });
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
-        <View>{icon}</View>
-        {focused ? (
-          <Badge style={{ backgroundColor: colors.primary }} size={10}></Badge>
-        ) : (
-          <Text>{label}</Text>
-        )}
-      </View>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <Icon color={focused ? colors.primary : colors.black} />
+    </View>
   );
 };

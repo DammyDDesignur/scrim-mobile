@@ -16,7 +16,6 @@ const HomeScreen = () => {
   return (
     <>
       <StatusBar style="light" />
-
       <View style={styles.container}>
         <ImageBackground
           source={require("../../../assets/profile/Hanger.png")}
@@ -62,7 +61,7 @@ const HomeScreen = () => {
         </View>
         <View style={styles.action}>
           <Button style={styles.btn} color={colors.white} mode="outlined">
-            Deposit
+            <Text style={{ textTransform: "capitalize" }}>Deposit</Text>
           </Button>
           <ScrimButton mode="white" onPress={() => console.log("hi")} />
         </View>
@@ -82,11 +81,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 1,
     borderColor: colors.white,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
   },
   balance: {
     backgroundColor: colors.warning,
     width: "45%",
-    transform: [{ rotate: "-5deg" }],
+    transform: [{ skewY: "-3deg" }],
     borderWidth: 2,
     borderColor: colors.tertiary,
   },
@@ -101,11 +102,12 @@ const styles = StyleSheet.create({
     fontFamily: "Moderat",
     color: colors.white,
     marginBottom: 5,
-    transform: [{ rotate: "-5deg" }],
+    transform: [{ skewY: "-3deg" }],
   },
   container: {
     backgroundColor: colors.primary,
     height: "100%",
+    flex: 1,
     display: "flex",
     justifyContent: "space-around",
     paddingVertical: Constants.statusBarHeight,

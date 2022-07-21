@@ -18,4 +18,16 @@ export default {
   //
   TRANSFER: "authenticated/transfer",
   TRANSFER_HISOTRY: "authenticated/transfer/history",
+  //
+  //
+  //
+  PROFILE: "authenticated/profile",
+  PROFILE_EDIT: "authenticated/profile/edit",
+  PROFILE_PINRESET: "authenticated/profile/pinreset",
+  //
+  //
+  //
+  ACCOUNT: "authenticated/account",
+  ACCOUNT_ADD: "authenticated/profile/add",
+  // PROFILE_PINRESET: "authenticated/profile/pinreset",
 };
