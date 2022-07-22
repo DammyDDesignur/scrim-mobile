@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Dimensions, View, StyleSheet, ScrollView, Image } from "react-native";
-import { Text, TextInput } from "react-native-paper";
+import { Dimensions, View, StyleSheet, Text, Image } from "react-native";
 import colors from "../../../../config/colors";
 
 import ScrimButton from "../../../../components/reusables/ScrimButton";
@@ -55,11 +54,6 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-around",
   },
-  minContainer: {
-    height: "80%",
-    width,
-    padding: 30,
-  },
   nextContainer: {
     display: "flex",
     justifyContent: "space-between",
@@ -78,10 +72,6 @@ const styles = StyleSheet.create({
     fontFamily: "Moderat-Light",
     fontSize: 17,
     textAlign: "center",
-  },
-  singin: {
-    fontFamily: "Moderat",
-    fontSize: 15,
   },
   imgView: {
     width,
