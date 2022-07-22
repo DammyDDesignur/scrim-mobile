@@ -1,7 +1,13 @@
 import React from "react";
 
-import { Dimensions, View, StyleSheet } from "react-native";
-import { Text, TextInput } from "react-native-paper";
+import {
+  Dimensions,
+  View,
+  StyleSheet,
+  ImageBackground,
+  Text,
+} from "react-native";
+
 import colors from "../../../../config/colors";
 
 import ScrimButton from "../../../../components/reusables/ScrimButton";
@@ -14,8 +20,16 @@ const { width, height } = Dimensions.get("window");
 const PinSetup2 = ({ navigation }) => {
   const [pin, setPin] = React.useState("");
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require("../../../../assets/onboarding/pin-bg.png")}
+      style={styles.container}
+    >
       <View>
+        <Text
+          style={[styles.subText, { color: colors.primary, marginBottom: 30 }]}
+        >
+          The very last one 🚀
+        </Text>
         <Text style={styles.text}>Retype Pin</Text>
         <Text style={styles.subText}>
           Input a combination that you would easily remember.
@@ -28,9 +42,7 @@ const PinSetup2 = ({ navigation }) => {
           value={pin}
           onChange={(val: string) => setPin(val)}
           numeric={true}
-          //   onComplete={(value) => {
-          //     alert(value);
-          //   }}
+          autoFocus={false}
         />
       </View>
       <View style={styles.nextContainer}>
@@ -40,7 +52,7 @@ const PinSetup2 = ({ navigation }) => {
           }
         />
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -49,6 +61,7 @@ const styles = StyleSheet.create({
     width,
     height: "100%",
     backgroundColor: colors.light,
+    flex: 1,
   },
   minContainer: {
     height: "80%",

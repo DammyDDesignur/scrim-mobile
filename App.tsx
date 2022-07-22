@@ -15,16 +15,21 @@ const theme = {
     ...DefaultTheme.colors,
     primary: "#7000FF",
     secondary: "#16032E",
-    tertiary: "#a1b2c3",
+    tertiary: "#5100BC",
     warning: "#FCDC4D",
     error: "#EF2D56",
     success: "#2FBF71",
+    white: "#fff",
   },
 };
 
 export default function App() {
   const [loaded] = useFonts({
     Moderat: require("./app/assets/fonts/Moderat-Regular.ttf"),
+    "Moderat-Light": require("./app/assets/fonts/Moderat-Light.ttf"),
+    "Moderat-Bold": require("./app/assets/fonts/Moderat-Bold.ttf"),
+    "Moderat-Thin": require("./app/assets/fonts/Moderat-Thin.ttf"),
+    "Moderat-Black": require("./app/assets/fonts/Moderat-Black.ttf"),
   });
   if (!loaded) {
     return null;

@@ -5,11 +5,11 @@ import Button from "../Button";
 
 import { Octicons } from "@expo/vector-icons";
 
-const AccountComponent = ({ title, logo, username }) => {
+const TransactionComponent = ({ title, logo, username }) => {
   return (
     <View style={styles.container}>
       <Button
-        style={{ paddingHorizontal: 0 }}
+        style={{ padding: 0 }}
         mode="text"
         text={title}
         textColor={colors.black}
@@ -28,10 +28,10 @@ const AccountComponent = ({ title, logo, username }) => {
               />
             }
             mode="text"
-            style={{ backgroundColor: colors.light, ...styles.btn }}
+            style={{ backgroundColor: colors.light }}
           />
         ) : (
-          <Button icon="plus" mode="contained" style={styles.btn} />
+          <Button icon="plus" mode="contained" />
         )}
       </>
     </View>
@@ -45,20 +45,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: colors.white,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     borderRadius: 30,
-    marginVertical: 5,
+    marginVertical: 10,
   },
   text: {
     fontFamily: "Moderat",
     fontSize: 12,
     fontWeight: "800",
   },
-  btn: {
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderRadius: 100,
-  },
 });
-export default AccountComponent;
+export default TransactionComponent;

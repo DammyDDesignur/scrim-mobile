@@ -20,7 +20,10 @@ const { width, height } = Dimensions.get("window");
 
 const SignIn = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require("../../../../assets/onboarding/create-bg.png")}
+      style={styles.container}
+    >
       <View>
         <Text style={styles.text}>Sign In</Text>
         <Text style={styles.subText}>
@@ -56,7 +59,7 @@ const SignIn = ({ navigation }) => {
           onPress={() => navigation.navigate(routes.AUTHENTICATION_PINSETUP)}
         />
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -65,6 +68,7 @@ const styles = StyleSheet.create({
     width,
     height: "100%",
     backgroundColor: colors.light,
+    flex: 1,
   },
   minContainer: {
     height: "80%",
@@ -83,16 +87,16 @@ const styles = StyleSheet.create({
   text: {
     color: colors.primary,
     fontSize: 35,
-    marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    marginHorizontal: 15,
+    fontFamily: "Moderat-Bold",
   },
   subText: {
     fontFamily: "Moderat",
     fontSize: 18,
-
-    marginHorizontal: 35,
-    marginTop: 35,
+    color: colors.black,
+    marginHorizontal: 15,
+    marginTop: 15,
+    width: "80%",
   },
   singin: {
     fontFamily: "Moderat",

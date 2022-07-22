@@ -33,6 +33,11 @@ const FirstSlide = ({ handleNext }: SlideType) => {
         </View>
       </View>
       <View style={styles.controls}>
+        <Image
+          style={{ width: 50 }}
+          resizeMode="center"
+          source={require("../../../assets/onboarding/step1.png")}
+        />
         <ScrimButton mode="white" onPress={handleNext} />
       </View>
     </ImageBackground>
@@ -48,11 +53,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   controls: {
-    padding: 10,
+    paddingHorizontal: 28,
     width,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   minContainer: {
@@ -64,8 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginVertical: 20,
     marginHorizontal: 42,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-Bold",
   },
   imgView: {
     width,

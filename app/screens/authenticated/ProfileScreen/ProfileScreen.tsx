@@ -62,7 +62,7 @@ const ProfileScreen = ({ navigation }) => {
               <Button
                 onPress={() => navigation.navigate(routes.PROFILE_EDIT)}
                 mode="outlined"
-                style={{ alignSelf: "flex-end", width: "40%" }}
+                style={{ alignSelf: "flex-end" }}
                 text="Edit"
               />
             </View>

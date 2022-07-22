@@ -9,19 +9,36 @@ import EmailVerification from "../../screens/onboarding/authentication/signup/Em
 import SignIn from "../../screens/onboarding/authentication/signin";
 import PinSetup from "../../screens/onboarding/authentication/signin/PinSetup";
 import SuccessScreen from "../../screens/onboarding/authentication/signin/SuccessScreen";
+import { View } from "react-native";
+import Button from "../../components/reusables/Button";
+import PinSetup2 from "../../screens/onboarding/authentication/signin/PinSetup2";
 
 const Stack = createNativeStackNavigator();
 
 const Onboarding = () => {
   return (
     <Stack.Navigator
-      screenOptions={{
+      screenOptions={({ navigation, route }) => ({
         title: "",
-        headerTitleAlign: "center",
         headerShown: true,
         headerStyle: { backgroundColor: colors.light },
         headerShadowVisible: false,
-      }}
+        headerBackVisible: false,
+        headerTitle: ({ children, tintColor }) => (
+          <Button
+            onPress={() => navigation.goBack()}
+            icon="arrow-left"
+            mode="text"
+            iconSize={25}
+            iconColor={colors.black}
+            style={{
+              backgroundColor: colors.white,
+              borderRadius: 5,
+              paddingHorizontal: 10,
+            }}
+          />
+        ),
+      })}
     >
       <Stack.Screen
         options={{ headerShown: false }}
@@ -29,7 +46,23 @@ const Onboarding = () => {
         component={OnboardingSlides}
       />
       <Stack.Screen
-        options={{ animation: "slide_from_right" }}
+        options={({ navigation, route }) => ({
+          animation: "slide_from_right",
+          headerTitle: ({ children, tintColor }) => (
+            <Button
+              onPress={() => navigation.goBack()}
+              icon="arrow-left"
+              mode="text"
+              iconSize={25}
+              iconColor={colors.black}
+              style={{
+                backgroundColor: colors.white,
+                borderRadius: 5,
+                paddingHorizontal: 10,
+              }}
+            />
+          ),
+        })}
         name={routes.AUTHENTICATION_SIGNUP}
         component={Signup}
       />
@@ -44,9 +77,14 @@ const Onboarding = () => {
         component={SignIn}
       />
       <Stack.Screen
-        options={{ animation: "slide_from_right" }}
+        options={{ animation: "slide_from_right", headerTitle: null }}
         name={routes.AUTHENTICATION_PINSETUP}
         component={PinSetup}
+      />
+      <Stack.Screen
+        options={{ animation: "slide_from_right", headerTitle: null }}
+        name={routes.AUTHENTICATION_PINSETUP2}
+        component={PinSetup2}
       />
       <Stack.Screen
         options={{ animation: "slide_from_right" }}
@@ -58,3 +96,7 @@ const Onboarding = () => {
 };
 
 export default Onboarding;
+
+// const CustomHeader = () => (
+//  return (<></>)
+// )

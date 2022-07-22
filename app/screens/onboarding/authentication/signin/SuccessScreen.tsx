@@ -16,7 +16,8 @@ const SuccessScreen = ({ navigation }) => {
       <View style={styles.imgView}>
         <Image
           style={styles.img}
-          source={require("../../../../assets/onboarding/MinionStar.png")}
+          source={require("../../../../assets/onboarding/minion-green.png")}
+          resizeMode="center"
         />
       </View>
       <View style={styles.nextContainer}>
@@ -59,9 +60,10 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    padding: 20,
   },
   img: {
-    width,
+    width: "90%",
     height: 350,
     resizeMode: "contain",
   },

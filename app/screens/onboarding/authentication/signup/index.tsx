@@ -21,41 +21,46 @@ const { width, height } = Dimensions.get("window");
 const SignUp = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.text}>Create Account</Text>
-      <Text style={styles.subText}>
-        Create a scrim account withing seconds and spread love
-      </Text>
-      <View style={styles.minContainer}>
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Email"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Username"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Country"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Password"
-        />
-        <TextInput
-          theme={{ roundness: 15 }}
-          style={styles.input}
-          mode="outlined"
-          label="Retype Password"
-        />
+      <ImageBackground
+        style={{ flex: 1 }}
+        source={require("../../../../assets/onboarding/create-bg.png")}
+      >
+        <Text style={styles.text}>Create Account</Text>
+        <Text style={styles.subText}>
+          Create a scrim account withing seconds and spread love 👻
+        </Text>
+        <View style={styles.minContainer}>
+          <TextInput
+            theme={{ roundness: 15 }}
+            style={styles.input}
+            mode="outlined"
+            label="Email"
+          />
+          <TextInput
+            theme={{ roundness: 15 }}
+            style={styles.input}
+            mode="outlined"
+            label="Username"
+          />
+          <TextInput
+            theme={{ roundness: 15 }}
+            style={styles.input}
+            mode="outlined"
+            label="Country"
+          />
+          <TextInput
+            theme={{ roundness: 15 }}
+            style={styles.input}
+            mode="outlined"
+            label="Password"
+          />
+          <TextInput
+            theme={{ roundness: 15 }}
+            style={styles.input}
+            mode="outlined"
+            label="Retype Password"
+          />
+        </View>
         <View style={styles.nextContainer}>
           <Text style={styles.singin}>
             Got an account?{" "}
@@ -72,7 +77,7 @@ const SignUp = ({ navigation }) => {
             }
           />
         </View>
-      </View>
+      </ImageBackground>
     </ScrollView>
   );
 };
@@ -84,7 +89,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
   },
   minContainer: {
-    height: "80%",
     width,
     padding: 30,
   },
@@ -94,18 +98,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 20,
+    marginHorizontal: 15,
   },
   text: {
     color: colors.primary,
-    fontSize: 35,
-    marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontSize: 30,
+    marginHorizontal: 15,
+    fontFamily: "Moderat-Bold",
   },
   subText: {
-    marginHorizontal: 35,
+    marginHorizontal: 15,
     fontFamily: "Moderat",
     fontSize: 18,
+    color: colors.black,
+    width: "80%",
   },
   singin: {
     fontFamily: "Moderat",

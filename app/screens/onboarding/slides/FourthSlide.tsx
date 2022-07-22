@@ -1,10 +1,11 @@
 import React from "react";
-import { Dimensions, View, StyleSheet, Image } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Dimensions, View, StyleSheet, Image, Text } from "react-native";
+
 import colors from "../../../config/colors";
 
 import { useNavigation } from "@react-navigation/native";
 import routes from "../../../routes";
+import Button from "../../../components/reusables/Button";
 
 type RouteTypes = {
   navigate: (value: string) => void;
@@ -31,16 +32,15 @@ const FourthSlide = () => {
             onPress={() => navigate(routes.AUTHENTICATION_SIGNUP)}
             style={styles.btn}
             mode="outlined"
-          >
-            Create an account
-          </Button>
+            text="Create an account"
+          />
+
           <Button
             onPress={() => navigate(routes.AUTHENTICATION_SIGNIN)}
             style={styles.btn}
             mode="contained"
-          >
-            Sign In
-          </Button>
+            text="Sign In"
+          />
         </View>
       </View>
     </View>
@@ -62,12 +62,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     marginHorizontal: 42,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-Bold",
   },
   imgView: {
     width,
-    // flex: 1,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -80,12 +78,11 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     paddingHorizontal: 30,
+    alignItems: "center",
   },
   btn: {
     marginVertical: 10,
-    borderWidth: 3,
-    borderColor: colors.primary,
-    borderRadius: 100,
+    width: "70%",
   },
 });
 export default FourthSlide;

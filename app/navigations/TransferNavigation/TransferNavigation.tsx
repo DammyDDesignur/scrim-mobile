@@ -19,13 +19,10 @@ const TransferNavigation = () => {
       <Stack.Screen
         options={{
           headerTitle: (props) => (
-            <HeaderComponent
-              icon={<Transfer color={colors.white} />}
-              text="Transfer"
-            />
+            <HeaderComponent Icon={Transfer} text="Transfer" />
           ),
           headerTitleAlign: "center",
-          headerStyle: { backgroundColor: colors.primary },
+          headerStyle: { backgroundColor: colors.white },
           headerBackVisible: false,
         }}
         name={routes.TRANSFER}
@@ -37,16 +34,15 @@ const TransferNavigation = () => {
 
 export default TransferNavigation;
 
-const HeaderComponent = ({ icon, text }) => (
+const HeaderComponent = ({ Icon, text }) => (
   <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-    <View>
-      {icon}
-      <Text style={{ color: "transparent" }}>Scrim</Text>
+    <View style={{ marginRight: 20 }}>
+      <Icon color={colors.primary} />
     </View>
     <Text
       style={{
         fontSize: 20,
-        color: colors.white,
+        color: colors.primary,
         fontFamily: "Moderat",
       }}
     >

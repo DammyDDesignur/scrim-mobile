@@ -44,6 +44,7 @@ const AccountScreen = () => {
       {medias.map((media) => {
         return (
           <AccountComponent
+            key={media.title}
             title={media.title}
             logo={media.logo}
             username={media.username}
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   },
   gText: {
     fontFamily: "Moderat",
-    fontSize: 20,
+    fontSize: 15,
     color: colors.black,
   },
   headerContainer: {

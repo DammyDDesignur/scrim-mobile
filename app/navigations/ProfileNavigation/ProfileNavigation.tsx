@@ -54,9 +54,8 @@ export default ProfileNavigation;
 
 const HeaderComponent = ({ Icon, text }) => (
   <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-    <View>
+    <View style={{ marginRight: 20 }}>
       <Icon color={colors.primary} />
-      <Text style={{ color: "transparent" }}>Scrim</Text>
     </View>
     <Text
       style={{

@@ -14,7 +14,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 type ButtonType = {
   children?: React.ReactNode;
   mode?: "outlined" | "contained" | "text";
-  color?: "primary" | "secondary" | "error" | "warning" | "success";
+  color?:
+    | "primary"
+    | "secondary"
+    | "error"
+    | "warning"
+    | "success"
+    | "white"
+    | "tertiary";
   text?: string;
   onPress?: () => void;
   icon?: any | string;
@@ -24,6 +31,7 @@ type ButtonType = {
   contentStyle?: TextStyle;
   iconColor?: string;
   textColor?: string;
+  iconPosition?: string;
 };
 
 const Button = ({
@@ -39,6 +47,7 @@ const Button = ({
   style,
   contentStyle,
   textColor,
+  iconPosition = "left",
 }: ButtonType) => {
   const { colors } = useTheme();
   const modes = {
@@ -70,18 +79,23 @@ const Button = ({
   };
   const styles = StyleSheet.create({
     container: {
-      borderRadius: 30,
-      padding: 10,
+      borderRadius: 100,
+      paddingVertical: 10,
+      paddingHorizontal: 20,
       display: "flex",
-      flexDirection: "row",
+      alignSelf: "center",
+      flexDirection: iconPosition === "left" ? "row" : "row-reverse",
       justifyContent: "center",
       alignItems: "center",
+      width: "auto",
     },
     text: {
       fontFamily: "Moderat",
-      fontSize: 15,
+      fontSize: 12,
       fontWeight: "bold",
       marginLeft: Icon || icon ? 5 : 0,
+      textAlign: "center",
+      width: Icon || icon ? "auto" : "100%",
     },
   });
 

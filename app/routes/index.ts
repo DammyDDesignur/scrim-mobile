@@ -5,6 +5,7 @@ export default {
   AUTHENTICATION_SIGNIN: "authentication/signin",
   AUTHENTICATION_EMAILVERIFICATION: "authentication/emailverification",
   AUTHENTICATION_PINSETUP: "authentication/pinsetup",
+  AUTHENTICATION_PINSETUP2: "authentication/pinsetup2",
   AUTHENTICATION_SUCESSSCREEN: "authentication/successscreen",
   //
   //

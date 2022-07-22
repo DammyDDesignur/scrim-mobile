@@ -18,19 +18,23 @@ const EmailVerification = ({ navigation }) => {
           source={require("../../../../assets/onboarding/Thumbs.png")}
         />
       </View>
-      <View>
-        <Text style={styles.text}>A scrim mail has been sent to your mail</Text>
-        <Text style={styles.subText}>
-          Kindly go through your mail inbox{" "}
-          <Text style={{ color: colors.primary, fontWeight: "800" }}>
-            (Usermail@mail.com)
-          </Text>{" "}
-          for your verification mail
-        </Text>
-      </View>
+
+      <Text style={styles.text}>A scrim mail has been sent to your mail</Text>
+      <Text style={styles.subText}>
+        Kindly go through your mail inbox{" "}
+        <Text style={{ color: colors.primary, fontWeight: "800" }}>
+          (Usermail@mail.com)
+        </Text>{" "}
+        for your verification mail
+      </Text>
 
       <View style={styles.nextContainer}>
-        <Text style={{ color: colors.primary, fontWeight: "800" }}>
+        <Text
+          style={{
+            color: colors.primary,
+            marginVertical: 10,
+          }}
+        >
           Set Up Pin
         </Text>
 
@@ -59,14 +63,13 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: 35,
   },
   text: {
     color: colors.primary,
-    fontSize: 35,
+    fontSize: 30,
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-Bold",
     textAlign: "center",
   },
   subText: {

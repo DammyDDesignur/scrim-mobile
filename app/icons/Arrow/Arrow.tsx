@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
 type IconType = {
@@ -11,7 +11,7 @@ const Arrow = ({ color = "white" }: IconType) => {
     <View
       style={[
         StyleSheet.absoluteFill,
-        { alignItems: "center", justifyContent: "center" },
+        { alignItems: "center", justifyContent: "center", padding: 20 },
       ]}
     >
       <Svg width="52" height="16" viewBox="0 0 52 16" fill="none">

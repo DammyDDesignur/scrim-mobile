@@ -19,10 +19,7 @@ const AccountNavigation = () => {
       <Stack.Screen
         options={{
           headerTitle: (props) => (
-            <HeaderComponent
-              icon={<Account color={colors.primary} />}
-              text="Accounts"
-            />
+            <HeaderComponent Icon={Account} text="Accounts" />
           ),
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: colors.white },
@@ -37,11 +34,10 @@ const AccountNavigation = () => {
 
 export default AccountNavigation;
 
-const HeaderComponent = ({ icon, text }) => (
+const HeaderComponent = ({ Icon, text }) => (
   <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-    <View>
-      {icon}
-      <Text style={{ color: "transparent" }}>Scrim</Text>
+    <View style={{ marginRight: 20 }}>
+      <Icon color={colors.primary} />
     </View>
     <Text
       style={{

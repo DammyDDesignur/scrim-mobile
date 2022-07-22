@@ -7,9 +7,10 @@ import Transfer from "../../../icons/Transfer";
 
 import VirtualKeyboard from "react-native-virtual-keyboard";
 import ViewWithPng from "../../../components/reusables/ViewWithPng";
-import { Button } from "react-native-paper";
+
 import ScrimButton from "../../../components/reusables/ScrimButton";
 import Constants from "expo-constants";
+import Button from "../../../components/reusables/Button";
 
 const HomeScreen = () => {
   const [amount, setAmount] = React.useState<string>("|");
@@ -23,13 +24,17 @@ const HomeScreen = () => {
           style={styles.balanceContainer}
         >
           <Text style={styles.balanceText}>Balance</Text>
-          <ViewWithPng style={styles.balance}>
-            <Image
-              style={{ width: 30, height: 30 }}
-              source={require("../../../assets/profile/icon-small.png")}
-            />
-            <Text style={styles.text}>3,180</Text>
-          </ViewWithPng>
+          <Button
+            style={styles.balance}
+            Icon={
+              <Image
+                style={{ width: 20, height: 20 }}
+                source={require("../../../assets/profile/icon-small.png")}
+              />
+            }
+            text={"3,180"}
+            contentStyle={styles.text}
+          />
         </ImageBackground>
         <View style={styles.iconContainer}>
           <Image
@@ -45,24 +50,32 @@ const HomeScreen = () => {
             alignItems: "center",
           }}
         >
-          <View style={styles.rateContainer}>
-            <Text style={styles.rate}>= N60,000/$100</Text>
-          </View>
+          <Button
+            mode="contained"
+            color="tertiary"
+            contentStyle={{ width: "auto" }}
+            text="= N60,000/$100"
+          />
         </View>
         <View>
           <VirtualKeyboard
             rowStyle={{ paddingVertical: 10 }}
             decimal={true}
             clearOnLongPress={true}
-            color={colors.white}
+            color={colors.warning}
+            textStyle={styles.keyPadText}
             pressMode="string"
             onPress={(val: string) => setAmount(val)}
+            backspaceImg={require("../../../assets/backspace.png")}
           />
         </View>
         <View style={styles.action}>
-          <Button style={styles.btn} color={colors.white} mode="outlined">
-            <Text style={{ textTransform: "capitalize" }}>Deposit</Text>
-          </Button>
+          <Button
+            text="Deposit"
+            mode="outlined"
+            color="white"
+            style={{ width: 100 }}
+          />
           <ScrimButton mode="white" onPress={() => console.log("hi")} />
         </View>
       </View>
@@ -87,22 +100,27 @@ const styles = StyleSheet.create({
   balance: {
     backgroundColor: colors.warning,
     width: "45%",
-    transform: [{ skewY: "-3deg" }],
+    transform: [{ rotate: "-5.36deg" }],
     borderWidth: 2,
     borderColor: colors.tertiary,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingRight: 25,
   },
   balanceContainer: {
     display: "flex",
     alignItems: "center",
     paddingTop: 20,
     marginBottom: 20,
+    justifyContent: "center",
   },
   balanceText: {
-    fontSize: 15,
+    fontSize: 10,
     fontFamily: "Moderat",
     color: colors.white,
     marginBottom: 5,
-    transform: [{ skewY: "-3deg" }],
+    transform: [{ rotate: "-5.36deg" }],
   },
   container: {
     backgroundColor: colors.primary,
@@ -143,10 +161,16 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontFamily: "Moderat",
+    fontFamily: "Moderat-Bold",
     fontWeight: "700",
     color: colors.primary,
     marginHorizontal: 10,
+  },
+  keyPadText: {
+    fontFamily: "Moderat-Bold",
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
+    textShadowOffset: { width: 1, height: -1 },
+    textShadowRadius: 10,
   },
 });
 export default HomeScreen;
