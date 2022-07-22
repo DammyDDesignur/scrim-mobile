@@ -7,6 +7,7 @@ import {
   ScrollView,
   Image,
   TextInput,
+  Dimensions,
 } from "react-native";
 import colors from "../../../config/colors";
 import Transfer from "../../../icons/Transfer";
@@ -14,6 +15,11 @@ import Transfer from "../../../icons/Transfer";
 import ScrimButton from "../../../components/reusables/ScrimButton";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../../../components/reusables/Button";
+import Scrimmmm from "../../../components/reusables/Scrimmmm";
+
+import Constants from "expo-constants";
+
+const { width, height } = Dimensions.get("window");
 const TransferScreen = () => {
   const [amount, setAmount] = React.useState<string>("|");
   return (
@@ -36,6 +42,9 @@ const TransferScreen = () => {
               Icon={<Ionicons name="filter" size={24} color={colors.black} />}
             />
           </View>
+          <View style={styles.action}>
+            <Scrimmmm />
+          </View>
         </View>
       </ScrollView>
     </>
@@ -44,15 +53,13 @@ const TransferScreen = () => {
 
 const styles = StyleSheet.create({
   action: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    padding: 20,
+    position: "absolute",
+    bottom: 0,
+    width,
   },
   container: {
-    height: "100%",
+    height: height - Constants.statusBarHeight * 3.5,
     display: "flex",
-    justifyContent: "space-around",
     padding: 20,
   },
   header: {
@@ -61,11 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  iconContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   gText: {
     fontFamily: "Moderat",
     fontSize: 20,

@@ -1,97 +1,168 @@
+import React, { useCallback, useMemo, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
 import { View, StyleSheet, Text, ScrollView, Image } from "react-native";
-import { Avatar } from "react-native-paper";
+import { Avatar, TextInput } from "react-native-paper";
 import Button from "../../../components/reusables/Button";
 import colors from "../../../config/colors";
 import Profile from "../../../icons/Profile";
 import Verified from "../../../icons/Verified";
 import routes from "../../../routes";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import ScrimButton from "../../../components/reusables/ScrimButton";
 
 const ProfileScreen = ({ navigation }) => {
+  const [index, setIndex] = React.useState<number>(2);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  const handleSheetChanges = useCallback((index: number) => {
+    setIndex(index);
+    console.log(index);
+  }, []);
+
+  React.useEffect(() => {
+    if (bottomSheetRef.current) bottomSheetRef.current.close();
+  }, []);
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.light }}>
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.gText}>Profile Pic</Text>
-          <Avatar.Icon
-            size={40}
-            style={{ borderRadius: 15 }}
-            icon="white-balance-sunny"
-          />
-        </View>
-        <View style={styles.profileInfoContainer}>
-          <Avatar.Image
-            size={150}
-            source={require("../../../assets/profile/pic.png")}
-          />
-          <View style={styles.infos}>
-            <LinearGradient
-              style={styles.verified}
-              colors={["#623CEA", "#7000FF", "#09CAEE"]}
-            >
-              <Verified />
-              <Text style={styles.verifiedText}>Verified</Text>
-            </LinearGradient>
-            <Text style={styles.username}>@Nagamoto</Text>
-            <Button mode="outlined" style={{ width: 110 }} text="Change DP" />
+    <>
+      <ScrollView style={{ flex: 1, backgroundColor: colors.light }}>
+        <View style={styles.container}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.gText}>Profile Pic</Text>
+            <Avatar.Icon
+              size={40}
+              style={{ borderRadius: 15 }}
+              icon="white-balance-sunny"
+            />
           </View>
-        </View>
-        <View style={styles.infoContainer}>
-          <Text style={styles.gText}>Info</Text>
-          <View style={{ padding: 10 }}>
-            <View style={{ marginVertical: 5 }}>
-              <Text style={styles.gText}>Username</Text>
-              <Text style={[styles.gText, styles.username, { color: "#000" }]}>
-                @Nagamoto
-              </Text>
+          <View style={styles.profileInfoContainer}>
+            <Avatar.Image
+              size={150}
+              source={require("../../../assets/profile/pic.png")}
+            />
+            <View style={styles.infos}>
+              <LinearGradient
+                style={styles.verified}
+                colors={["#623CEA", "#7000FF", "#09CAEE"]}
+              >
+                <Verified />
+                <Text style={styles.verifiedText}>Verified</Text>
+              </LinearGradient>
+              <Text style={styles.username}>@Nagamoto</Text>
+              <Button mode="outlined" style={{ width: 110 }} text="Change DP" />
             </View>
-            <View style={{ marginVertical: 5 }}>
-              <Text style={styles.gText}>Email</Text>
-              <Text style={[styles.gText, styles.username, { color: "#000" }]}>
-                Nagamoto@email.com
-              </Text>
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.gText}>Info</Text>
+            <View style={{ padding: 10 }}>
+              <View style={{ marginVertical: 5 }}>
+                <Text style={styles.gText}>Username</Text>
+                <Text
+                  style={[styles.gText, styles.username, { color: "#000" }]}
+                >
+                  @Nagamoto
+                </Text>
+              </View>
+              <View style={{ marginVertical: 5 }}>
+                <Text style={styles.gText}>Email</Text>
+                <Text
+                  style={[styles.gText, styles.username, { color: "#000" }]}
+                >
+                  Nagamoto@email.com
+                </Text>
+              </View>
+              <View style={{ marginVertical: 5 }}>
+                <Text style={styles.gText}>Password</Text>
+                <Text
+                  style={[styles.gText, styles.username, { color: "#000" }]}
+                >
+                  **************
+                </Text>
+              </View>
+              <View style={{ marginVertical: 5 }}>
+                <Button
+                  onPress={() => navigation.navigate(routes.PROFILE_EDIT)}
+                  mode="outlined"
+                  style={{ alignSelf: "flex-end" }}
+                  text="Edit"
+                />
+              </View>
             </View>
-            <View style={{ marginVertical: 5 }}>
-              <Text style={styles.gText}>Password</Text>
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.gText}>Pin Reset</Text>
+            <View style={styles.pinResetContainer}>
               <Text style={[styles.gText, styles.username, { color: "#000" }]}>
                 **************
               </Text>
-            </View>
-            <View style={{ marginVertical: 5 }}>
               <Button
-                onPress={() => navigation.navigate(routes.PROFILE_EDIT)}
+                // onPress={() => navigation.navigate(routes.PROFILE_PINRESET)}
+                onPress={() => bottomSheetRef.current.expand()}
                 mode="outlined"
-                style={{ alignSelf: "flex-end" }}
-                text="Edit"
+                style={{ width: 110 }}
+                text="Reset"
               />
             </View>
           </View>
         </View>
-        <View style={styles.infoContainer}>
-          <Text style={styles.gText}>Pin Reset</Text>
-          <View style={styles.pinResetContainer}>
-            <Text style={[styles.gText, styles.username, { color: "#000" }]}>
-              **************
-            </Text>
-            <Button
-              onPress={() => navigation.navigate(routes.PROFILE_PINRESET)}
+      </ScrollView>
+      <BottomSheet
+        enablePanDownToClose={true}
+        enableOverDrag={true}
+        enableContentPanningGesture={true}
+        enableHandlePanningGesture={true}
+        ref={bottomSheetRef}
+        index={index}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}
+      >
+        <BottomSheetScrollView>
+          <View
+            style={{
+              padding: 20,
+            }}
+          >
+            <Text style={styles.gText}>Kindly input new pin</Text>
+            <TextInput
+              theme={{ roundness: 15 }}
+              style={styles.input}
               mode="outlined"
-              style={{ width: 110 }}
-              text="Reset"
+              label="Old Pin"
             />
+            <TextInput
+              theme={{ roundness: 15 }}
+              style={styles.input}
+              mode="outlined"
+              label="New Pin"
+            />
+            <TextInput
+              theme={{ roundness: 15 }}
+              style={styles.input}
+              mode="outlined"
+              label="Retype Pin"
+            />
+            <View style={styles.action}>
+              <Button
+                text="Cancel"
+                mode="text"
+                color="error"
+                contentStyle={{ width: "auto", fontSize: 15 }}
+                onPress={() => bottomSheetRef.current.close()}
+              />
+              <ScrimButton />
+            </View>
           </View>
-        </View>
-      </View>
-    </ScrollView>
+        </BottomSheetScrollView>
+      </BottomSheet>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  btn: {
-    borderColor: colors.primary,
-    borderWidth: 2,
-    borderRadius: 30,
+  action: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   container: {
     padding: 20,
@@ -154,6 +225,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
+  },
+  input: {
+    paddingHorizontal: 10,
+    marginVertical: 10,
   },
 });
 export default ProfileScreen;

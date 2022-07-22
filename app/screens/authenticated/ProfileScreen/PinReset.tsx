@@ -68,8 +68,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.primary,
     fontSize: 20,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontFamily: "Moderat-Bold",
     textAlign: "center",
   },
   input: {

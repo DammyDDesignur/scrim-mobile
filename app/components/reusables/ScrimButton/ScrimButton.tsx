@@ -16,7 +16,7 @@ import Arrow from "../../../icons/Arrow";
 import Button from "../Button";
 
 type ScrimButtonType = {
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   style?: any;
   mode?: "primary" | "white";
   color?: string;

@@ -5,41 +5,50 @@ import HomeScreen from "../../screens/authenticated/HomeScreen";
 import routes from "../../routes";
 import Home from "../../icons/Home";
 import colors from "../../config/colors";
-import ProfileScreen from "../../screens/authenticated/ProfileScreen";
 import Profile from "../../icons/Profile";
 import Account from "../../icons/Account";
-import AccountScreen from "../../screens/authenticated/AccountScreen";
 import Transfer from "../../icons/Transfer";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
-
-import { Badge } from "react-native-paper";
+import { useRoute } from "@react-navigation/native";
 
 import TransferNavigation from "../TransferNavigation";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  TouchableWithoutFeedback,
+} from "react-native";
 import ProfileNavigation from "../ProfileNavigation";
 import AccountNavigation from "../AccountNavigation";
 
 const Tab = createBottomTabNavigator();
 
 const Authenticated = () => {
-  const route = useRoute();
-
+  const [current, setCurrent] = React.useState<boolean>(true);
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarShowLabel: false,
         tabBarStyle: {
           borderTopWidth: 0,
           elevation: 0,
+          backgroundColor: current ? colors.primary : colors.white,
         },
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tab.Screen
         options={({ navigation }) => ({
-          tabBarLabel: ({ focused }) => (focused ? null : <Text>Home</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon focused={focused} Icon={Home} />
+            <TabBarIcon
+              navigation={navigation}
+              current={current}
+              setCurrent={setCurrent}
+              focused={focused}
+              Icon={Home}
+            />
           ),
         })}
         name={routes.AUTHENTICATED_HOME}
@@ -47,10 +56,14 @@ const Authenticated = () => {
       />
       <Tab.Screen
         options={({ navigation }) => ({
-          tabBarLabel: ({ focused }) =>
-            focused ? null : <Text>Transfer</Text>,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon focused={focused} Icon={Transfer} />
+            <TabBarIcon
+              navigation={navigation}
+              current={current}
+              setCurrent={setCurrent}
+              focused={focused}
+              Icon={Transfer}
+            />
           ),
         })}
         name={routes.AUTHENTICATED_TRANSFER}
@@ -58,9 +71,14 @@ const Authenticated = () => {
       />
       <Tab.Screen
         options={({ navigation }) => ({
-          tabBarLabel: ({ focused }) => (focused ? null : <Text>Account</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon focused={focused} Icon={Account} />
+            <TabBarIcon
+              navigation={navigation}
+              current={current}
+              setCurrent={setCurrent}
+              focused={focused}
+              Icon={Account}
+            />
           ),
         })}
         name={routes.AUTHENTICATED_ACCOUNT}
@@ -69,9 +87,14 @@ const Authenticated = () => {
 
       <Tab.Screen
         options={({ navigation }) => ({
-          tabBarLabel: ({ focused }) => (focused ? null : <Text>Profile</Text>),
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon focused={focused} Icon={Profile} />
+            <TabBarIcon
+              navigation={navigation}
+              current={current}
+              setCurrent={setCurrent}
+              focused={focused}
+              Icon={Profile}
+            />
           ),
         })}
         name={routes.AUTHENTICATED_PROFILE}
@@ -83,24 +106,54 @@ const Authenticated = () => {
 
 export default Authenticated;
 
-const TabBarIcon = ({ Icon, focused }) => {
+const TabBarIcon = ({
+  Icon,
+  focused,
+  current = false,
+  setCurrent,
+  navigation,
+}) => {
+  const route = useRoute();
+  const handleTab = () => {
+    if (route.name === routes.AUTHENTICATED_HOME) {
+      navigation.navigate(route.name);
+      setCurrent(true);
+    } else {
+      navigation.navigate(route.name);
+      setCurrent(false);
+    }
+  };
   const styles = StyleSheet.create({
     container: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       borderTopWidth: 5,
-      borderColor: focused ? colors.primary : "transparent",
-      backgroundColor: focused ? colors.light : "transparent",
+      borderColor: current
+        ? "transparent"
+        : focused
+        ? colors.primary
+        : "transparent",
+      backgroundColor: current
+        ? "transparent"
+        : focused
+        ? colors.light
+        : "transparent",
       height: "100%",
       marginTop: -2,
-      width: "100%",
+      width: "80%",
     },
     iconStyle: {},
   });
   return (
-    <View style={styles.container}>
-      <Icon color={focused ? colors.primary : colors.black} />
-    </View>
+    <TouchableWithoutFeedback onPress={handleTab}>
+      <View style={styles.container}>
+        <Icon
+          color={
+            current ? colors.white : focused ? colors.primary : colors.black
+          }
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };

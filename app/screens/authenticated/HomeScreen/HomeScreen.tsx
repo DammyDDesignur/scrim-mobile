@@ -74,6 +74,7 @@ const HomeScreen = () => {
             text="Deposit"
             mode="outlined"
             color="white"
+            contentStyle={{ fontSize: 15 }}
             style={{ width: 100 }}
           />
           <ScrimButton mode="white" onPress={() => console.log("hi")} />
@@ -128,7 +129,6 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     justifyContent: "space-around",
-    paddingVertical: Constants.statusBarHeight,
   },
   header: {
     display: "flex",

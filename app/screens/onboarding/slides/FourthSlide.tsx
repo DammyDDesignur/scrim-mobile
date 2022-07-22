@@ -33,6 +33,7 @@ const FourthSlide = () => {
             style={styles.btn}
             mode="outlined"
             text="Create an account"
+            contentStyle={styles.textStyle}
           />
 
           <Button
@@ -40,6 +41,7 @@ const FourthSlide = () => {
             style={styles.btn}
             mode="contained"
             text="Sign In"
+            contentStyle={styles.textStyle}
           />
         </View>
       </View>
@@ -82,7 +84,10 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginVertical: 10,
-    width: "70%",
+    width: "80%",
+  },
+  textStyle: {
+    fontSize: 17,
   },
 });
 export default FourthSlide;

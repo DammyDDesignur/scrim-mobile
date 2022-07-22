@@ -6,6 +6,7 @@ import {
   Text,
   TextStyle,
   ViewStyle,
+  GestureResponderEvent,
 } from "react-native";
 import { useTheme } from "react-native-paper";
 
@@ -23,7 +24,7 @@ type ButtonType = {
     | "white"
     | "tertiary";
   text?: string;
-  onPress?: () => void;
+  onPress?: (event: GestureResponderEvent) => void;
   icon?: any | string;
   Icon?: React.ReactNode;
   iconSize?: number;

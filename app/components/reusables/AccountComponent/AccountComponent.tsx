@@ -12,6 +12,7 @@ const AccountComponent = ({ title, logo, username }) => {
         style={{ paddingHorizontal: 0 }}
         mode="text"
         text={title}
+        contentStyle={{ fontSize: 13 }}
         textColor={colors.black}
         Icon={<Image source={logo} style={{ width: 20, height: 20 }} />}
       />
@@ -52,8 +53,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Moderat",
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: "800",
+    flex: 1,
+    textAlign: "center",
   },
   btn: {
     paddingVertical: 10,
