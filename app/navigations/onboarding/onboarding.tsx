@@ -24,6 +24,7 @@ const Onboarding = () => {
         headerStyle: { backgroundColor: colors.light },
         headerShadowVisible: false,
         headerBackVisible: false,
+        headerTitleAlign: "left",
         headerTitle: ({ children, tintColor }) => (
           <Button
             onPress={() => navigation.goBack()}

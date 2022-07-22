@@ -5,7 +5,7 @@ import Button from "../Button";
 
 import { Octicons } from "@expo/vector-icons";
 
-const AccountComponent = ({ title, logo, username }) => {
+const AccountComponent = ({ title, logo, username, onDelete, onAdd }) => {
   return (
     <View style={styles.container}>
       <Button
@@ -28,11 +28,17 @@ const AccountComponent = ({ title, logo, username }) => {
                 color={colors.primary}
               />
             }
+            onPress={onDelete}
             mode="text"
             style={{ backgroundColor: colors.light, ...styles.btn }}
           />
         ) : (
-          <Button icon="plus" mode="contained" style={styles.btn} />
+          <Button
+            icon="plus"
+            onPress={onAdd}
+            mode="contained"
+            style={styles.btn}
+          />
         )}
       </>
     </View>

@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     width,
   },
   container: {
-    height: height - Constants.statusBarHeight * 3.5,
+    height: height - Constants.statusBarHeight * 4,
     display: "flex",
     padding: 20,
   },

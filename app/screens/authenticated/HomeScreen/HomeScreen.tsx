@@ -1,15 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View, StyleSheet, Text, Image, ImageBackground } from "react-native";
-import SafeScreen from "../../../components/reusables/SafeScreen";
+
 import colors from "../../../config/colors";
-import Transfer from "../../../icons/Transfer";
 
 import VirtualKeyboard from "react-native-virtual-keyboard";
-import ViewWithPng from "../../../components/reusables/ViewWithPng";
 
 import ScrimButton from "../../../components/reusables/ScrimButton";
-import Constants from "expo-constants";
+
 import Button from "../../../components/reusables/Button";
 
 const HomeScreen = () => {
@@ -74,7 +72,9 @@ const HomeScreen = () => {
             text="Deposit"
             mode="outlined"
             color="white"
-            contentStyle={{ fontSize: 15 }}
+            contentStyle={{
+              fontSize: 15,
+            }}
             style={{ width: 100 }}
           />
           <ScrimButton mode="white" onPress={() => console.log("hi")} />
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   balanceText: {
-    fontSize: 10,
+    fontSize: 15,
     fontFamily: "Moderat",
     color: colors.white,
     marginBottom: 5,
@@ -160,17 +160,13 @@ const styles = StyleSheet.create({
     width: "40%",
   },
   text: {
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: "Moderat-Bold",
-    fontWeight: "700",
     color: colors.primary,
     marginHorizontal: 10,
   },
   keyPadText: {
     fontFamily: "Moderat-Bold",
-    textShadowColor: "rgba(0, 0, 0, 0.2)",
-    textShadowOffset: { width: 1, height: -1 },
-    textShadowRadius: 10,
   },
 });
 export default HomeScreen;
