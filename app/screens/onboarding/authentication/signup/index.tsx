@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   singin: {
     fontFamily: "Moderat",
-    fontSize: 15,
+    fontSize: 14,
   },
   input: {
     paddingHorizontal: 10,

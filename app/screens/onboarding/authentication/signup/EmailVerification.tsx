@@ -15,6 +15,7 @@ const EmailVerification = ({ navigation }) => {
       <View style={styles.imgView}>
         <Image
           style={styles.img}
+          resizeMode="center"
           source={require("../../../../assets/onboarding/Thumbs.png")}
         />
       </View>
@@ -32,7 +33,7 @@ const EmailVerification = ({ navigation }) => {
         <Text
           style={{
             color: colors.primary,
-            marginVertical: 10,
+            marginVertical: 15,
           }}
         >
           Set Up Pin
@@ -74,8 +75,8 @@ const styles = StyleSheet.create({
   },
   subText: {
     marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontSize: 18,
+    fontFamily: "Moderat-Light",
+    fontSize: 17,
     textAlign: "center",
   },
   singin: {
@@ -91,7 +92,6 @@ const styles = StyleSheet.create({
   img: {
     width: 150,
     height: 150,
-    resizeMode: "contain",
   },
 });
 export default EmailVerification;
