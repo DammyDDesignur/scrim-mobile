@@ -20,7 +20,7 @@ const Onboarding = () => {
     <Stack.Navigator
       screenOptions={({ navigation, route }) => ({
         title: "",
-        headerShown: true,
+        headerShown: false,
         headerStyle: { backgroundColor: colors.light },
         headerShadowVisible: false,
         headerBackVisible: false,

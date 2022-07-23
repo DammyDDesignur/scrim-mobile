@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ImageBackground,
   Text,
+  Keyboard,
 } from "react-native";
 
 import colors from "../../../../config/colors";
@@ -14,59 +15,65 @@ import ScrimButton from "../../../../components/reusables/ScrimButton";
 import routes from "../../../../routes";
 
 import { KeycodeInput } from "react-native-keycode";
+import SafeScreen from "../../../../components/reusables/SafeScreen";
 
 const { width, height } = Dimensions.get("window");
 
 const PinSetup2 = ({ navigation }) => {
   const [pin, setPin] = React.useState("");
   return (
-    <ImageBackground
-      source={require("../../../../assets/onboarding/pin-bg.png")}
-      style={styles.container}
-    >
-      <View>
-        <Text
-          style={[styles.subText, { color: colors.primary, marginBottom: 30 }]}
-        >
-          The very last one 🚀
-        </Text>
-        <Text style={styles.text}>Retype Pin</Text>
-        <Text style={styles.subText}>
-          Input a combination that you would easily remember.
-        </Text>
-      </View>
-      <View style={styles.minContainer}>
-        <KeycodeInput
-          textColor={colors.primary}
-          tintColor={colors.tertiary}
-          value={pin}
-          onChange={(val: string) => setPin(val)}
-          numeric={true}
-          autoFocus={false}
-        />
-      </View>
-      <View style={styles.nextContainer}>
-        <ScrimButton
-          onPress={() =>
-            navigation.navigate(routes.AUTHENTICATION_SUCESSSCREEN)
-          }
-        />
-      </View>
-    </ImageBackground>
+    <SafeScreen>
+      <ImageBackground
+        source={require("../../../../assets/onboarding/pin-bg.png")}
+        style={styles.container}
+      >
+        <View>
+          <Text
+            style={[
+              styles.subText,
+              { color: colors.primary, marginBottom: 30 },
+            ]}
+          >
+            The very last one 🚀
+          </Text>
+          <Text style={styles.text}>Set Up Pin</Text>
+          <Text style={styles.subText}>
+            Input a combination that you would easily remember.
+          </Text>
+        </View>
+        <View style={styles.minContainer}>
+          <KeycodeInput
+            textColor={colors.primary}
+            tintColor={colors.tertiary}
+            value={pin}
+            onChange={(val: string) => setPin(val)}
+            numeric={true}
+            autoFocus={false}
+            onComplete={(value) => {
+              Keyboard.dismiss();
+            }}
+          />
+        </View>
+        <View style={styles.nextContainer}>
+          <ScrimButton
+            onPress={() =>
+              navigation.navigate(routes.AUTHENTICATION_SUCESSSCREEN)
+            }
+          />
+        </View>
+      </ImageBackground>
+    </SafeScreen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width,
-    height: "100%",
+    height,
     backgroundColor: colors.light,
-    flex: 1,
+    padding: 20,
   },
   minContainer: {
-    height: "80%",
-    width,
-    padding: 30,
+    paddingVertical: 30,
     flex: 1,
   },
   nextContainer: {
@@ -75,21 +82,19 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     marginVertical: 20,
-    padding: 30,
+    paddingVertical: 30,
   },
   text: {
     color: colors.primary,
-    fontSize: 35,
-    marginHorizontal: 35,
-    fontFamily: "Moderat",
-    fontWeight: "700",
+    fontSize: 28,
+    fontFamily: "Moderat-Bold",
   },
   subText: {
     fontFamily: "Moderat",
-    fontSize: 18,
-
-    marginHorizontal: 35,
-    marginTop: 35,
+    fontSize: 16,
+    marginTop: 25,
+    width: "80%",
+    color: colors.black,
   },
   singin: {
     fontFamily: "Moderat",

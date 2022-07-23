@@ -9,19 +9,23 @@ import Verified from "../../../icons/Verified";
 import routes from "../../../routes";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import ScrimButton from "../../../components/reusables/ScrimButton";
+import { useFocusEffect } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const ProfileScreen = ({ navigation }) => {
-  const [index, setIndex] = React.useState<number>(2);
+  const [index, setIndex] = React.useState<number>(0);
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  const snapPoints = React.useMemo(() => [1, "50%", "90%"], []);
   const handleSheetChanges = useCallback((index: number) => {
     setIndex(index);
-    console.log(index);
   }, []);
 
-  React.useEffect(() => {
-    if (bottomSheetRef.current) bottomSheetRef.current.close();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      bottomSheetRef.current?.close();
+      return () => bottomSheetRef.current?.close();
+    }, [])
+  );
   return (
     <>
       <ScrollView style={{ flex: 1, backgroundColor: colors.light }}>
@@ -115,43 +119,45 @@ const ProfileScreen = ({ navigation }) => {
         snapPoints={snapPoints}
         onChange={handleSheetChanges}
       >
-        <BottomSheetScrollView>
-          <View
-            style={{
-              padding: 20,
-            }}
-          >
-            <Text style={styles.gText}>Kindly input new pin</Text>
-            <TextInput
-              theme={{ roundness: 15 }}
-              style={styles.input}
-              mode="outlined"
-              label="Old Pin"
-            />
-            <TextInput
-              theme={{ roundness: 15 }}
-              style={styles.input}
-              mode="outlined"
-              label="New Pin"
-            />
-            <TextInput
-              theme={{ roundness: 15 }}
-              style={styles.input}
-              mode="outlined"
-              label="Retype Pin"
-            />
-            <View style={styles.action}>
-              <Button
-                text="Cancel"
-                mode="text"
-                color="error"
-                contentStyle={{ width: "auto", fontSize: 15 }}
-                onPress={() => bottomSheetRef.current.close()}
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetScrollView>
+            <View
+              style={{
+                padding: 20,
+              }}
+            >
+              <Text style={styles.gText}>Kindly input new pin</Text>
+              <TextInput
+                theme={{ roundness: 15 }}
+                style={styles.input}
+                mode="outlined"
+                label="Old Pin"
               />
-              <ScrimButton />
+              <TextInput
+                theme={{ roundness: 15 }}
+                style={styles.input}
+                mode="outlined"
+                label="New Pin"
+              />
+              <TextInput
+                theme={{ roundness: 15 }}
+                style={styles.input}
+                mode="outlined"
+                label="Retype Pin"
+              />
+              <View style={styles.action}>
+                <Button
+                  text="Cancel"
+                  mode="text"
+                  color="error"
+                  contentStyle={{ width: "auto", fontSize: 15 }}
+                  onPress={() => bottomSheetRef.current.close()}
+                />
+                <ScrimButton />
+              </View>
             </View>
-          </View>
-        </BottomSheetScrollView>
+          </BottomSheetScrollView>
+        </GestureHandlerRootView>
       </BottomSheet>
     </>
   );

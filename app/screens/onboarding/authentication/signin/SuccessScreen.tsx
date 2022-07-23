@@ -6,26 +6,29 @@ import colors from "../../../../config/colors";
 
 import ScrimButton from "../../../../components/reusables/ScrimButton";
 import routes from "../../../../routes";
+import SafeScreen from "../../../../components/reusables/SafeScreen";
 
 const { width, height } = Dimensions.get("window");
 
 const SuccessScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Success Screen</Text>
-      <View style={styles.imgView}>
-        <Image
-          style={styles.img}
-          source={require("../../../../assets/onboarding/minion-green.png")}
-          resizeMode="center"
-        />
+    <SafeScreen>
+      <View style={styles.container}>
+        <Text style={styles.text}>Success Screen</Text>
+        <View style={styles.imgView}>
+          <Image
+            style={styles.img}
+            source={require("../../../../assets/onboarding/minion-green.png")}
+            resizeMode="center"
+          />
+        </View>
+        <View style={styles.nextContainer}>
+          <ScrimButton
+            onPress={() => navigation.navigate(routes.AUTHENTICATED)}
+          />
+        </View>
       </View>
-      <View style={styles.nextContainer}>
-        <ScrimButton
-          onPress={() => navigation.navigate(routes.AUTHENTICATED)}
-        />
-      </View>
-    </View>
+    </SafeScreen>
   );
 };
 

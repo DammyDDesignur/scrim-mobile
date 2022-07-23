@@ -25,11 +25,11 @@ const theme = {
 
 export default function App() {
   const [loaded] = useFonts({
-    Moderat: require("./app/assets/fonts/Moderat-Regular.ttf"),
-    "Moderat-Light": require("./app/assets/fonts/Moderat-Light.ttf"),
-    "Moderat-Bold": require("./app/assets/fonts/Moderat-Bold.ttf"),
-    "Moderat-Thin": require("./app/assets/fonts/Moderat-Thin.ttf"),
-    "Moderat-Black": require("./app/assets/fonts/Moderat-Black.ttf"),
+    Moderat: require("./app/assets/fonts/Moderat-Extended-Regular.ttf"),
+    "Moderat-Light": require("./app/assets/fonts/Moderat-Extended-Light.ttf"),
+    "Moderat-Bold": require("./app/assets/fonts/Moderat-Extended-Bold.ttf"),
+    "Moderat-Thin": require("./app/assets/fonts/Moderat-Extended-Thin.ttf"),
+    "Moderat-Black": require("./app/assets/fonts/Moderat-Extended-Black.ttf"),
   });
   if (!loaded) {
     return null;

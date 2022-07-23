@@ -68,10 +68,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.primary,
-    fontSize: 40,
+    fontSize: 32,
     marginVertical: 20,
     marginHorizontal: 42,
     fontFamily: "Moderat-Bold",
+    width: "60%",
   },
   imgView: {
     width,

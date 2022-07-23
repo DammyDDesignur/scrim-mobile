@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    // borderWidth: 2,
   },
   minContainer: {
     height: "70%",
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
-    fontSize: 40,
+    fontSize: 32,
     marginVertical: 20,
     marginHorizontal: 42,
     fontFamily: "Moderat-Bold",
