@@ -76,7 +76,7 @@ const AccountScreen = () => {
   return (
     <>
       <View style={styles.container}>
-        <Text style={[styles.gText, { textAlign: "center" }]}>
+        <Text style={[styles.gText, { textAlign: "center", flex: 0.5 }]}>
           Here you can be able to add or remove social media accounts on Scrim.
         </Text>
         <View style={styles.headerContainer}>

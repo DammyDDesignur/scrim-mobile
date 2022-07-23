@@ -9,10 +9,12 @@ const AccountComponent = ({ title, logo, username, onDelete, onAdd }) => {
   return (
     <View style={styles.container}>
       <Button
-        style={{ paddingHorizontal: 0 }}
+        style={{
+          paddingHorizontal: 0,
+        }}
         mode="text"
         text={title}
-        contentStyle={{ fontSize: 13 }}
+        contentStyle={{ fontSize: 13, width: 80, textAlign: "center" }}
         textColor={colors.black}
         Icon={<Image source={logo} style={{ width: 20, height: 20 }} />}
       />
@@ -58,9 +60,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   text: {
-    fontFamily: "Moderat",
-    fontSize: 13,
-    fontWeight: "800",
+    fontFamily: "Moderat-Bold",
+    fontSize: 12,
     flex: 1,
     textAlign: "center",
   },

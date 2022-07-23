@@ -91,9 +91,8 @@ const Button = ({
       width: "auto",
     },
     text: {
-      fontFamily: "Moderat",
+      fontFamily: "Moderat-Bold",
       fontSize: 12,
-      fontWeight: "bold",
       marginLeft: Icon || icon ? 5 : 0,
       textAlign: "center",
       width: Icon || icon ? "auto" : "100%",

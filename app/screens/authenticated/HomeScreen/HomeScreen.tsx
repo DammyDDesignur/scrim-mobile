@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, StyleSheet, Text, Image, ImageBackground } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  ImageBackground,
+  Modal,
+} from "react-native";
 
 import colors from "../../../config/colors";
 
@@ -19,11 +26,14 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RNBottomSheetBackDrop } from "../../../components/reusables/RNBottomSheet";
 import SingleSend from "../../../components/reusables/SingleSend";
 import BulkSend from "../../../components/reusables/BulkSend";
+import RNModal from "../../../components/reusables/RNModal";
 
 const snapPoints = [1, "30%"];
 
 const HomeScreen = () => {
   const [amount, setAmount] = React.useState<string>("|");
+
+  const [modalVisible, setModalVisible] = React.useState(false);
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
   const handlePresentModalPress = React.useCallback(() => {
@@ -43,24 +53,25 @@ const HomeScreen = () => {
       <StatusBar style="light" />
       <BottomSheetModalProvider>
         <View style={styles.container}>
-          <ImageBackground
-            source={require("../../../assets/profile/Hanger.png")}
-            resizeMode="center"
-            style={styles.balanceContainer}
-          >
-            <Text style={styles.balanceText}>Balance</Text>
-            <Button
-              style={styles.balance}
-              Icon={
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={require("../../../assets/profile/icon-small.png")}
-                />
-              }
-              text={"3,180"}
-              contentStyle={styles.text}
-            />
-          </ImageBackground>
+          <View style={styles.balanceContainer}>
+            <View style={styles.hanger}></View>
+            <View style={styles.balance}>
+              <Text style={styles.balanceText}>Balance</Text>
+              <Button
+                style={{ paddingHorizontal: 0, paddingVertical: 0 }}
+                Icon={
+                  <Image
+                    style={{ width: 20, height: 20 }}
+                    source={require("../../../assets/profile/icon-small.png")}
+                  />
+                }
+                mode="text"
+                textColor="white"
+                text={"3,180"}
+                contentStyle={styles.text}
+              />
+            </View>
+          </View>
           <View style={styles.iconContainer}>
             <Image
               style={{ width: 30, height: 30 }}
@@ -100,14 +111,25 @@ const HomeScreen = () => {
               mode="outlined"
               color="white"
               contentStyle={{
-                fontSize: 15,
+                fontSize: 13,
               }}
               style={{ width: 100 }}
             />
-            <ScrimButton mode="white" onPress={handlePresentModalPress} />
+            {/* <ScrimButton mode="white" onPress={handlePresentModalPress} /> */}
+            <ScrimButton mode="white" onPress={() => setModalVisible(true)} />
           </View>
         </View>
-
+        <RNModal
+          animationType="slide"
+          visible={modalVisible}
+          statusBarTranslucent={true}
+          onRequestClose={() => {
+            alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <Text>hello world</Text>
+        </RNModal>
         <BottomSheetModal
           ref={bottomSheetModalRef}
           index={1}
@@ -158,29 +180,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   balance: {
-    backgroundColor: colors.warning,
-    width: "45%",
-    transform: [{ rotate: "-5.36deg" }],
-    borderWidth: 2,
-    borderColor: colors.tertiary,
+    // backgroundColor: colors.warning,
+    // width: "45%",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    paddingRight: 25,
+    borderColor: colors.tertiary,
+    backgroundColor: colors.tertiary,
+    borderRadius: 25,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
   },
   balanceContainer: {
     display: "flex",
     alignItems: "center",
-    paddingTop: 20,
-    marginBottom: 20,
     justifyContent: "center",
+    paddingTop: 50,
+    marginBottom: 20,
   },
   balanceText: {
-    fontSize: 15,
-    fontFamily: "Moderat",
-    color: colors.white,
-    marginBottom: 5,
-    transform: [{ rotate: "-5.36deg" }],
+    fontSize: 10,
+    fontFamily: "Moderat-Bold",
+    color: colors.light,
+    textTransform: "uppercase",
   },
   container: {
     backgroundColor: colors.primary,
@@ -201,7 +224,7 @@ const styles = StyleSheet.create({
   amount: {
     color: colors.white,
     textAlign: "center",
-    fontFamily: "Moderat",
+    fontFamily: "Moderat-Bold",
     fontSize: 30,
     marginVertical: 20,
   },
@@ -221,7 +244,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 25,
     fontFamily: "Moderat-Bold",
-    color: colors.primary,
+    color: colors.white,
     marginHorizontal: 10,
   },
   keyPadText: {
@@ -241,6 +264,19 @@ const styles = StyleSheet.create({
     right: 5,
     marginTop: -20,
     zIndex: 100000,
+  },
+  hanger: {
+    backgroundColor: "transparent",
+    height: 70,
+    width: 100,
+    padding: 5,
+    position: "absolute",
+    top: 0,
+    left: "35%",
+    borderLeftWidth: 5,
+    borderRightWidth: 5,
+    borderColor: colors.warning,
+    alignSelf: "center",
   },
 });
 
